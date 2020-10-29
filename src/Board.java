@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Board {
 
@@ -45,7 +47,7 @@ public class Board {
         int hammingDistance = 0;
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
-                if (goal[i][j] != tiles[i][j]){
+                if (goal[i][j] != tiles[i][j] && tiles[i][j] != 0){
                     hammingDistance++;
                 }
             }
@@ -53,12 +55,32 @@ public class Board {
         return hammingDistance;
     }
 
-    public Iterable<Board> getNeighbors(){
-
+    public List<Board> getNeighbors(){
+        List<Board> result = new ArrayList<>();
+        int[] emptyCellCoordinates = getEmptyCellCoordinates();
+        int emptyX = emptyCellCoordinates[0];
+        int emptyY = emptyCellCoordinates[1];
+        if (emptyX - 1 >= 0){
+            //x-1, y
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX - 1, emptyY)));
+        }
+        if (emptyX + 1 < getBoardSize()){
+            //x+1, y
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX + 1, emptyY)));
+        }
+        if (emptyY - 1 >= 0){
+            //x, y-1
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX, emptyY - 1)));
+        }
+        if (emptyY + 1 < getBoardSize()){
+            //x, y+1
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX, emptyY + 1)));
+        }
+        return result;
     }
 
     public boolean isSolvable(){
-
+        return true;
     }
 
     public boolean isGoalBoard(){
@@ -91,6 +113,33 @@ public class Board {
         if (o == null || getClass() != o.getClass()) return false;
         Board board = (Board) o;
         return Arrays.equals(tiles, board.tiles);
+    }
+
+    private int[] getEmptyCellCoordinates() {
+        int[] coordinates = new int[2];
+        for (int i = 0; i < getBoardSize(); i++) {
+            for (int j = 0; j < getBoardSize(); j++) {
+                if (tiles[i][j] == 0){
+                    coordinates[0] = i;
+                    coordinates[1] = j;
+                    return coordinates;
+                }
+            }
+        }
+        return coordinates;
+    }
+
+    private int[][] swapTiles(int fromX, int fromY, int toX, int toY) {
+        int[][] newTiles = new int[getBoardSize()][getBoardSize()];
+        for (int i = 0; i < getBoardSize(); i++) {
+            for (int j = 0; j < getBoardSize(); j++) {
+                newTiles[i][j] = tiles[i][j];
+            }
+        }
+        int temp = getTileAt(fromX, fromY);
+        newTiles[fromX][fromY] = newTiles[toX][toY];
+        newTiles[toX][toY] = temp;
+        return newTiles;
     }
 
     private boolean areTilesValid(int[][] tiles){
