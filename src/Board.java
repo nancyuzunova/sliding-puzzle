@@ -123,7 +123,7 @@ public class Board {
         return Arrays.equals(tiles, board.tiles);
     }
 
-     int getNumberOfInversions() {
+    private int getNumberOfInversions() {
         int inversionsCount = 0;
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
