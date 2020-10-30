@@ -80,7 +80,15 @@ public class Board {
     }
 
     public boolean isSolvable(){
-        return true;
+        int inversions = getNumberOfInversions();
+        if (getBoardSize() % 2 == 0){
+            //when n is even, an n-by-n board is solvable if and only if the number of inversions plus the row of the blank square is odd
+            int emptyCellRow = getEmptyCellCoordinates()[0];
+            return (inversions + emptyCellRow) % 2 == 1;
+        } else {
+            //when n is odd, an n-by-n board is solvable if and only if its number of inversions is even
+            return inversions % 2 == 0;
+        }
     }
 
     public boolean isGoalBoard(){
@@ -113,6 +121,31 @@ public class Board {
         if (o == null || getClass() != o.getClass()) return false;
         Board board = (Board) o;
         return Arrays.equals(tiles, board.tiles);
+    }
+
+     int getNumberOfInversions() {
+        int inversionsCount = 0;
+        for (int i = 0; i < getBoardSize(); i++) {
+            for (int j = 0; j < getBoardSize(); j++) {
+                int element = tiles[i][j];
+                int startRowIndex = 0;
+                int startColIndex = 0;
+                if (j == getBoardSize() - 1){
+                    startRowIndex = i + 1;
+                } else {
+                    startRowIndex = i;
+                    startColIndex = j + 1;
+                }
+                for (int k = startRowIndex; k < getBoardSize(); k++) {
+                    for (int l = startColIndex; l < getBoardSize(); l++) {
+                        if (element > tiles[k][l] && element != 0 && tiles[k][l] != 0){
+                            inversionsCount++;
+                        }
+                    }
+                }
+            }
+        }
+        return inversionsCount;
     }
 
     private int[] getEmptyCellCoordinates() {
