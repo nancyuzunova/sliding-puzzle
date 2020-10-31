@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Solver {
 
-    private Board initialBoard;
+    private final Board initialBoard;
     private int moves;
-    private List<Board> solution;
+    private final List<Board> solution;
 
     public Solver(Board initialBoard){
         if (initialBoard == null || !initialBoard.isSolvable()){
