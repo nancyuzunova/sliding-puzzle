@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class Solver {
 
@@ -18,7 +17,7 @@ public class Solver {
     }
 
     public void solve(){
-        PriorityQueue<SearchNode> candidates = new PriorityQueue<>((o1, o2) -> o1.getPriority() - o2.getPriority());
+        MinPriorityQueue candidates = new MinPriorityQueue();
         //First insert the initial search node into a priority queue
         candidates.offer(new SearchNode(initialBoard, moves, null));
         while (!candidates.isEmpty()) {
@@ -33,8 +32,9 @@ public class Solver {
                 solution.add(dequeuedNode.getBoard());
                 break;
             }
+            solution.add(dequeuedNode.getBoard());
             //if the dequeued is not the goal, get all neighbors
-            List<Board> neighbors = initialBoard.getNeighbors();
+            List<Board> neighbors = dequeuedNode.getBoard().getNeighbors();
             //put each neighbor into the priority queue
             for (Board neighbor : neighbors) {
                 //Optimization: do not enqueue a neighbor is its board is the same as the board of the previous node
