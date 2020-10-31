@@ -11,7 +11,7 @@ public class MinPriorityQueue{
 
     public void offer(SearchNode element){
         for (int i = 0; i < elements.size(); i++) {
-            if (element.getPriority() < elements.get(i).getPriority()){
+            if (element.getPriority() <= elements.get(i).getPriority()){
                 elements.add(i, element);
                 return;
             }
