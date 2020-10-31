@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,6 +12,10 @@ public class Main {
         Board board = new Board(tiles);
         Solver solver = new Solver(board);
         solver.solve();
-        System.out.println("Minimum number of moves" + solver.getMoves());
+        System.out.println("Minimum number of moves = " + solver.getMoves());
+        List<Board> solution = solver.getSolution();
+        for (Board b : solution) {
+            System.out.println(b);
+        }
     }
 }

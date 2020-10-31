@@ -48,4 +48,8 @@ public class Solver {
     public int getMoves(){
         return moves;
     }
+
+    public List<Board> getSolution() {
+        return solution;
+    }
 }
