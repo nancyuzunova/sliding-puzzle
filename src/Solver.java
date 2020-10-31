@@ -44,4 +44,8 @@ public class Solver {
             }
         }
     }
+
+    public int getMoves(){
+        return moves;
+    }
 }
