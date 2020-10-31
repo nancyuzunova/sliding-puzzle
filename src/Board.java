@@ -95,6 +95,9 @@ public class Board {
         int counter = 0;
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
+                if (i == getBoardSize() - 1 && j == getBoardSize() - 1){
+                    return true;
+                }
                 if (tiles[i][j] != ++counter){
                     return false;
                 }
