@@ -27,7 +27,6 @@ public class Board {
     }
 
     public int getManhattanDistance(){
-        int[][] goal = getGoalBoard();
         int manhattanDistance = 0;
         for (int x = 0; x < getBoardSize(); x++) {
             for (int y = 0; y < getBoardSize(); y++) {
@@ -40,19 +39,6 @@ public class Board {
             }
         }
         return manhattanDistance;
-    }
-
-    public int getHammingDistance(){
-        int[][] goal = getGoalBoard();
-        int hammingDistance = 0;
-        for (int i = 0; i < getBoardSize(); i++) {
-            for (int j = 0; j < getBoardSize(); j++) {
-                if (goal[i][j] != tiles[i][j] && tiles[i][j] != 0){
-                    hammingDistance++;
-                }
-            }
-        }
-        return hammingDistance;
     }
 
     public List<Board> getNeighbors(){
@@ -192,17 +178,5 @@ public class Board {
             }
         }
         return true;
-    }
-
-    private int[][] getGoalBoard(){
-        int[][] goalBoard = new int[getBoardSize()][getBoardSize()];
-        int counter = 1;
-        for (int i = 0; i < goalBoard.length; i++) {
-            for (int j = 0; j < goalBoard.length; j++) {
-                goalBoard[i][j] = counter++;
-            }
-        }
-        goalBoard[goalBoard.length - 1][goalBoard.length - 1] = 0;
-        return goalBoard;
     }
 }
