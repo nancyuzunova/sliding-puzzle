@@ -137,7 +137,7 @@ public class Board {
         return inversionsCount;
     }
 
-    private int[] getEmptyCellCoordinates() {
+    public int[] getEmptyCellCoordinates() {
         int[] coordinates = new int[2];
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
