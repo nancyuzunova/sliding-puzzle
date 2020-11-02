@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,6 +25,8 @@ public class Main {
         int matrixSize = (int) Math.sqrt(numberOfTiles + 1);
         int[][] tiles = new int[matrixSize][matrixSize];
 
+        ArrayList<Integer> numbers = new ArrayList<>();
+
         //Read the matrix
         System.out.println("Enter tiles' numbers:");
         boolean hasEmpty = false;
@@ -40,7 +43,13 @@ public class Main {
                         continue;
                     }
                 }
-                tiles[i][j] = scanner.nextInt();
+                //validating we do not have equal elements in the puzzle
+                int tile;
+                do {
+                    tile = scanner.nextInt();
+                } while (numbers.contains(tile));
+                numbers.add(tile);
+                tiles[i][j] = tile;
             }
         }
 
