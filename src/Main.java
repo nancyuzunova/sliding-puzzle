@@ -13,7 +13,7 @@ public class Main {
         do {
             System.out.println("Enter number of tiles:");
             numberOfTiles = scanner.nextInt();
-        } while (numberOfTiles <= 0);
+        } while (numberOfTiles < 0 || !isExactSquareRoot(numberOfTiles + 1));
 
         //Read the index of empty cell
         do {
@@ -52,5 +52,11 @@ public class Main {
         for (Board b : solution) {
             System.out.println(b);
         }
+    }
+
+    private static boolean isExactSquareRoot(int number) {
+        double sqrt = Math.sqrt(number);
+        int p = (int)sqrt;
+        return sqrt == p;
     }
 }
