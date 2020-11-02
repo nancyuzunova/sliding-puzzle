@@ -25,4 +25,8 @@ public class SearchNode {
     public int getMoves() {
         return moves;
     }
+
+    public SearchNode getPreviousSearchNode() {
+        return previousSearchNode;
+    }
 }

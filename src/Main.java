@@ -57,6 +57,10 @@ public class Main {
         Solver solver = new Solver(board);
         solver.solve();
         System.out.println("Minimum number of moves = " + solver.getMoves());
+        List<String> directions = solver.getDirections();
+        for (String d : directions){
+            System.out.println(d);
+        }
         List<Board> solution = solver.getSolution();
         for (Board b : solution) {
             System.out.println(b);
