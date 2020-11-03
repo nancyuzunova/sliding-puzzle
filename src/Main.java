@@ -49,10 +49,10 @@ public class Main {
         for (String d : directions){
             System.out.println(d);
         }
-        List<Board> solution = solver.getSolution();
-        for (Board b : solution) {
-            System.out.println(b);
-        }
+//        List<Board> solution = solver.getSolution();
+//        for (Board b : solution) {
+//            System.out.println(b);
+//        }
     }
 
     private static boolean isExactSquareRoot(int number) {
