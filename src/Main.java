@@ -41,7 +41,7 @@ public class Main {
             }
         }
 
-        Board board = new Board(tiles);
+        Board board = new Board(tiles, indexOfEmptyTile);
         Solver solver = new Solver(board);
         solver.solve();
         System.out.println("Minimum number of moves = " + solver.getMoves());

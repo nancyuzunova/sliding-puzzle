@@ -8,11 +8,13 @@ public class Board {
     private static final int MAX_NUMBER_OF_TILES = 32768;
 
     private int[][] tiles;
+    private int indexOfEmptyTile;
 
-    public Board(int[][] tiles){
+    public Board(int[][] tiles, int indexOfEmptyTile){
         if (areTilesValid(tiles)){
             this.tiles = tiles;
         }
+        this.indexOfEmptyTile = indexOfEmptyTile;
     }
 
     public int getTileAt(int row, int column){
@@ -48,19 +50,19 @@ public class Board {
         int emptyY = emptyCellCoordinates[1];
         if (emptyX - 1 >= 0){
             //x-1, y
-            result.add(new Board(swapTiles(emptyX, emptyY, emptyX - 1, emptyY)));
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX - 1, emptyY), indexOfEmptyTile));
         }
         if (emptyX + 1 < getBoardSize()){
             //x+1, y
-            result.add(new Board(swapTiles(emptyX, emptyY, emptyX + 1, emptyY)));
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX + 1, emptyY), indexOfEmptyTile));
         }
         if (emptyY - 1 >= 0){
             //x, y-1
-            result.add(new Board(swapTiles(emptyX, emptyY, emptyX, emptyY - 1)));
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX, emptyY - 1), indexOfEmptyTile));
         }
         if (emptyY + 1 < getBoardSize()){
             //x, y+1
-            result.add(new Board(swapTiles(emptyX, emptyY, emptyX, emptyY + 1)));
+            result.add(new Board(swapTiles(emptyX, emptyY, emptyX, emptyY + 1), indexOfEmptyTile));
         }
         return result;
     }
