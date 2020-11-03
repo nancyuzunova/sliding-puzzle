@@ -29,20 +29,8 @@ public class Main {
 
         //Read the matrix
         System.out.println("Enter tiles' numbers:");
-        boolean hasEmpty = false;
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
-                if (indexOfEmptyTile >= 0 && indexOfEmptyTile <= numberOfTiles){
-                    if (i + j == indexOfEmptyTile && !hasEmpty){
-                        //here is the empty cell -> 0
-                        hasEmpty = true;
-                        continue;
-                    }
-                } else {
-                    if (i == matrixSize - 1 && j == 0){
-                        continue;
-                    }
-                }
                 //validating we do not have equal elements in the puzzle
                 int tile;
                 do {
