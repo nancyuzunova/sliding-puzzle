@@ -72,6 +72,9 @@ public class Board {
     }
 
     public boolean isSolvable(){
+        if (isGoalBoard()){
+            return true;
+        }
         int inversions = getNumberOfInversions();
         if (getBoardSize() % 2 == 0){
             //when n is even, an n-by-n board is solvable if and only if the number of inversions plus the row of the blank square is odd
