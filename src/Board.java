@@ -14,7 +14,11 @@ public class Board {
         if (areTilesValid(tiles)){
             this.tiles = tiles;
         }
-        this.indexOfEmptyTile = indexOfEmptyTile;
+        if (indexOfEmptyTile == -1){
+            this.indexOfEmptyTile = tiles.length * tiles.length - 1;
+        } else {
+            this.indexOfEmptyTile = indexOfEmptyTile;
+        }
     }
 
     public int getTileAt(int row, int column){
@@ -83,8 +87,8 @@ public class Board {
         int counter = 0;
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
-                if (i == getBoardSize() - 1 && j == getBoardSize() - 1){
-                    return true;
+                if (counter == indexOfEmptyTile && tiles[i][j] == 0){
+                    continue;
                 }
                 if (tiles[i][j] != ++counter){
                     return false;
